@@ -1,0 +1,16 @@
+{
+  "name": "ezstart",
+  "version": "1.0.0",
+  "description": "EZStart- Start your day with a lightway custom starting screen",
+  "main": "src/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Landing",
+    "Page",
+    "EZLanding"
+  ],
+  "author": "Timo Eck",
+  "license": "ISC"
+}
