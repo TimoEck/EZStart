@@ -16,7 +16,6 @@
 <h3 align="left">Working on:</h3>
 <p align="left">
   <ul>
-    <li>Auto-Tab inside the search Field</li>
     <li>Edit responsivity</li>
     <li>Add Dark/Light Mode</li>
   </ul>
