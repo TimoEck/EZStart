@@ -4,7 +4,6 @@
   <h3 align="center">Start your day with a lightway custom starting screen</h3>
 </p>
 <hr>
-<small> Alpha Version</small>
 <h3 align="left">Features:</h3>
 <p align="left">
   <ul>
@@ -23,4 +22,4 @@
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
   </a>
 </p>
-
+<small> Alpha Version</small>
