@@ -3,7 +3,7 @@
   <img src="/EZStart/src/assets/Logo.png" alt="EZStart logo" title="EZStart" style="width: auto; height: 128px;"></br>
   <h3 align="center">Start your day with a lightway custom starting screen</h3>
 </p>
-<small> Alpha Version</small>
+<small align="center"> Alpha Version</small>
 <hr>
 <h3 align="left">Features:</h3>
 <p align="left">
