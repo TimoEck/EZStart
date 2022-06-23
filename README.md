@@ -31,6 +31,6 @@
   </a>
 </p>
 <hr>
-<p align="center" style="background-color: #F64544; color: white;">
+<p align="center">
   <small>Alpha Version</small>
 </p>
