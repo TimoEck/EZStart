@@ -4,7 +4,6 @@
   <h3 align="center">Start your day with a lightway custom starting screen</h3>
 </p>
 <hr>
-<small> Alpha Version</small>
 <h3 align="left">Features:</h3>
 <p align="left">
   <ul>
@@ -13,7 +12,16 @@
     <li>More coming soon...</li>
   </ul>
 </p>
-
+<hr>
+<small> Alpha Version</small>
+<h3 align="left">Working on:</h3>
+<p align="left">
+  <ul>
+    <li>Auto-Tab inside the search Field</li>
+    <li>Edit responsivity</li>
+    <li>Add Dark/Light Mode</li>
+  </ul>
+</p>
 <h3 align="left">Build with:</h3>
 <p align="left">
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> 
