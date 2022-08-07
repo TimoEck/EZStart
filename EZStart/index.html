@@ -6,68 +6,244 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/6e3dc891ca.js" crossorigin="anonymous"></script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./src/css/main.css">
-    <title>Hello, world!</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon">
+    <title>EZStart</title>
   </head>
   <body>
-    <!-- Main Container -->
-    <div class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column text-light">
-        <!-- Greeting & Time Box -->
-        <div class="container d-flex justify-content-center align-items-center flex-column text-light ">
-            <!-- TimeBox -->
-            <div class="timeBox d-flex flex-row ps-3">
-                <h1 id="time" class="display-1">7:52</h1>
-                <h4 id="ampm"></h4>
-            </div>
-            <!-- GreetingBox -->
-            <div class="greetingBox d-flex flex-row">
-                <h2 class="display-6" id="greeting">Welcome,</h2>
-                <span class="display-6" id="name"  contenteditable="true">Timo</span>
-            </div>
-        </div>
+      <div class="vh-100 d-flex justify-content-center align-items-center flex-column text-light">
+      <!-- Main Container -->
+      <div class="container-fluid" id="main_container">
+            
+            <!-- Greeting & Time Box -->
+            <div class="container d-flex justify-content-center align-items-center flex-column text-light ">
+                
+              <!-- TimeBox -->
+                <div class="timeBox d-flex flex-row ps-3">
+                    <h1 id="time" class="display-1">7:52</h1>
+                    <h4 id="ampm"></h4>
+                </div>
 
-        <div class="container d-flex justify-content-center pt-4 searchBox">
-            <div>
-                <form action="http://google.com/search" target="_blank" class="d-flex vw-100 justify-content-center ">
-                    <input id="searchField" name="q" placeholder="Search" class="inputField rounded-pill col-lg-3 col-sm-4 col-6 p-2 text-center"  >
-                </form> 
-            </div>
-        </div>
-
-        <div class="settings d-flex flex-column">
-            <div id="settingsBox" class="bg-danger p-2 rounded-2 m-2">
-                <div class="m-auto pb-2 bd-highlight d-flex justify-content-center flex-column">
-                    <button class="btn bg-dark text-light mb-2 " id="closeMenu" ><small>Close Settings</small></button>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="checkbox_ampm">
-                        <label class="form-check-label" for="checkbox_ampm">AM/PM</label>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="checkbox_randomcolor" >
-                        <label class="form-check-label" for="checkbox_randomcolor">Random Colorizer</label>
-                    </div>
+                <!-- GreetingBox -->
+                <div class="greetingBox d-flex flex-row">
+                    <h2 class="display-6" id="greeting">Welcome,</h2>
+                    &nbsp;
+                    <span class="display-6" id="name"  contenteditable="true">[EnterName]</span>
                 </div>
             </div>
-            <div id="openMenu" class="m-auto pb-2 bd-highlight">
-                <button class="btn btn-primary-outline text-light"><small>Open Settings</small></button>
-            </div>
-        </div>
-    </div>
-    
 
+            <!-- Searchbar -->
+            <div class="container d-flex justify-content-center border-0 pt-4">
+                  <div class="input-group d-flex flex-nowrap justify-content-center align-items-center">
+                    <div class="btn-group">
+                        <button type="button" id="dropdown_button" class="btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <!-- Icon will change at the value from the localstorage of the selected search engine  -->
+                          <span id="searchIcon">
+                            <div id="innerIcon">
+                              <svg role="img" class="" width="26"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Google</title>
+                              </svg>
+                            </div>
+                          </span> 
+                        </button>
+
+                        <div class="dropdown-menu">
+
+                          <button class="dropdown-item d-flex flex-nowrap align-items-center" id="google_btn" href="#">
+                            <span class="d-flex flex-wrap align-content-center" id="Google_icon">
+                                <svg role="img" class="" width="26"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Google</title>
+                                  <path fill="#EA4335 " d="M5.26620003,9.76452941 C6.19878754,6.93863203 8.85444915,4.90909091 12,4.90909091 C13.6909091,4.90909091 15.2181818,5.50909091 16.4181818,6.49090909 L19.9090909,3 C17.7818182,1.14545455 15.0545455,0 12,0 C7.27006974,0 3.1977497,2.69829785 1.23999023,6.65002441 L5.26620003,9.76452941 Z"/>
+                                  <path fill="#34A853" d="M16.0407269,18.0125889 C14.9509167,18.7163016 13.5660892,19.0909091 12,19.0909091 C8.86648613,19.0909091 6.21911939,17.076871 5.27698177,14.2678769 L1.23746264,17.3349879 C3.19279051,21.2936293 7.26500293,24 12,24 C14.9328362,24 17.7353462,22.9573905 19.834192,20.9995801 L16.0407269,18.0125889 Z"/>
+                                  <path fill="#4A90E2" d="M19.834192,20.9995801 C22.0291676,18.9520994 23.4545455,15.903663 23.4545455,12 C23.4545455,11.2909091 23.3454545,10.5272727 23.1818182,9.81818182 L12,9.81818182 L12,14.4545455 L18.4363636,14.4545455 C18.1187732,16.013626 17.2662994,17.2212117 16.0407269,18.0125889 L19.834192,20.9995801 Z"/>
+                                  <path fill="#FBBC05" d="M5.27698177,14.2678769 C5.03832634,13.556323 4.90909091,12.7937589 4.90909091,12 C4.90909091,11.2182781 5.03443647,10.4668121 5.26620003,9.76452941 L1.23999023,6.65002441 C0.43658717,8.26043162 0,10.0753848 0,12 C0,13.9195484 0.444780743,15.7301709 1.23746264,17.3349879 L5.27698177,14.2678769 Z"/>
+                                </svg>
+                              </span>
+                            <small class="ms-2">Google</small>
+                          </button>
+                    
+                          <button class="dropdown-item d-flex flex-nowrap align-items-center" id="duckduckgo_btn" href="#">
+                              <span class="d-flex flex-wrap align-content-center" id="Duckduckgo_icon">
+                                <svg role="img" class="" width="26" fill="#DE5833" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>DuckDuckGo</title>
+                                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 23C5.925 23 1 18.074 1 12S5.926 1 12 1s11 4.925 11 11-4.925 11-11 11zm10.219-11c0 4.805-3.317 8.833-7.786 9.925-.27-.521-.53-1.017-.749-1.438.645.249 1.93.718 2.208.615.376-.144.282-3.149-.14-3.245-.338-.075-1.632.837-2.141 1.209l.034.156c.078.397.144.993.03 1.247-.001.004-.002.01-.004.013a.218.218 0 0 1-.068.088c-.284.188-1.081.284-1.503.188a.516.516 0 0 1-.064-.02c-.694.396-2.01 1.109-2.25.971-.329-.188-.377-2.676-.329-3.288.035-.46 1.653.286 2.442.679.174-.163.602-.272.98-.31-.57-1.389-.99-2.977-.733-4.105 0 .002.002.002.002.002.356.248 2.73 1.05 3.91 1.027 1.18-.024 3.114-.743 2.903-1.323-.212-.58-2.135.51-4.142.324-1.486-.138-1.748-.804-1.42-1.29.414-.611 1.168.116 2.411-.256 1.245-.371 2.987-1.035 3.632-1.397 1.494-.833-.625-1.177-1.125-.947-.474.22-2.123.637-2.889.82.428-1.516-.603-4.149-1.757-5.3-.376-.376-.951-.612-1.603-.736-.25-.344-.654-.671-1.225-.977a5.772 5.772 0 0 0-3.595-.584l-.024.004-.034.004.004.002c-.148.028-.237.08-.357.098.148.016.705.276 1.057.418-.174.068-.412.108-.596.184a.828.828 0 0 0-.204.056c-.173.08-.303.375-.3.515.84-.086 2.082-.026 2.991.246-.644.09-1.235.258-1.661.482-.016.008-.03.018-.048.028-.054.02-.106.042-.152.066-1.367.72-1.971 2.405-1.611 4.424.323 1.824 1.665 8.088 2.29 11.064-3.973-1.4-6.822-5.186-6.822-9.639C1.781 6.356 6.356 1.781 12 1.781S22.219 6.356 22.219 12zM9.095 9.581a.758.758 0 1 0 0 1.516.758.758 0 0 0 0-1.516zm.338.702a.196.196 0 1 1 0-.392.196.196 0 0 1 0 .392zm4.724-1.043a.65.65 0 1 0 0 1.299.65.65 0 0 0 0-1.3zm.29.601a.168.168 0 1 1 0-.336.168.168 0 0 1 0 .336zM9.313 8.146s-.571-.26-1.125.09c-.554.348-.534.704-.534.704s-.294-.656.49-.978c.786-.32 1.17.184 1.17.184zm5.236-.052s-.41-.234-.73-.23c-.654.008-.831.296-.831.296s.11-.688.945-.55a.84.84 0 0 1 .616.484z"/>
+                                </svg>
+                              </span>
+                              <small class="ms-2">DuckDuckGo</small>
+                          </button> 
+
+                          <button class="dropdown-item d-flex flex-nowrap align-items-center" id="bing_btn" href="#">
+                              <span class="d-flex flex-wrap align-content-center"id="Bing_icon"  >
+                                <svg role="img" class="" width="26" fill="#258FFA" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Microsoft Bing</title>
+                                  <path d="M20.176 15.406a6.48 6.48 0 01-1.736 4.414c1.338-1.47.803-3.869-1.003-4.635-.862-.305-2.488-.85-3.367-1.158a1.834 1.834 0 01-.932-.818c-.381-.975-1.163-2.968-1.548-3.948-.095-.285-.31-.625-.265-.938.046-.598.724-1.003 1.276-.754l3.682 1.888c.621.292 1.305.692 1.796 1.172a6.486 6.486 0 012.097 4.777zm-1.44 1.888c-.264-1.194-1.135-1.744-2.216-2.028-1.527.902-4.853 2.878-6.952 4.13-1.103.68-2.13 1.35-2.919 1.242a2.866 2.866 0 01-2.77-2.325c-.012-.048-.008-.03-.001.01a6.4 6.4 0 00.947 2.653 6.498 6.498 0 005.486 3.022c1.908.062 3.536-1.153 5.099-2.096.292-.188.804-.496 1.332-.831l1.423-1.51c.553-.577.764-1.426.571-2.267zm-12.04 2.97c.422 0 .822-.1 1.173-.29.355-.215.964-.579 1.7-1.018L9.57 4.502c0-.99-.497-1.864-1.257-2.382-.08-.059-2.91-1.901-2.99-1.956-.605-.432-1.523.045-1.5.797v14.887l.417 2.36a2.488 2.488 0 002.455 2.056z"/>
+                                </svg>
+                              </span>
+                              <small class="ms-2">Bing</small>
+                          </button>
+                          
+
+                      </div>
+                    </div>
+                    <!-- Search InputField -->
+                    <input id="searchField" autofocus name="q" placeholder="Search" class="col-lg-3 col-sm-4 col-6 p-2" onkeypress="clickPress(event)">
+                    <button type="button" class="btn btn-light text-secondary" id="search_btn" onclick=getSearch()>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 20 20">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
+            </div>
+
+            <!-- Settings-Modal -->
+            <!-- <div class="modal fade" id="customEngine" tabindex="-1" aria-labelledby="customEngine" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content bg-dark text-light">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Settings</h5>
+                  </div>
+                  <div>
+                    <div class="collapse collapse-vertical" id="collapseSettings">
+                      <div class="card card-body bg-dark text-white" id="settings_card">
+                        <div class="row row-cols-3">
+                            <ul class="col d-flex flex-column align-items-center m-0">
+                                <input type="checkbox" class="btn-secondary" id="checkbox_ampm" autocomplete="off" hidden/>
+                                <label class="btn btn-secondary" for="checkbox_ampm" >
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa-solid fa-globe fa-stack-1x"></i>
+                                    </span>
+                                </label>
+                                <small>am/pm</small>
+                            </ul>
+                            <ul class="col d-flex flex-column align-items-center m-0">
+                                <input type="checkbox" class="btn-check" id="checkbox_randomcolor" autocomplete="off" hidden>
+                                    <label class="btn btn-secondary" for="checkbox_randomcolor">
+                                        <span class="fa-stack fa-1x">
+                                            <i class="fa-solid fa-shuffle fa-stack-1x"></i>
+                                        </span>
+                                    </label>
+                                </input>
+                                <small class="text-nowrap">random coolor</small>
+                            </ul>
+                            <ul class="col d-flex flex-column align-items-center m-0">
+                                <input type="checkbox" class="btn-check" id="checkbox_initTheme" autocomplete="off" hidden>
+                                    <label class="btn btn-secondary" for="checkbox_initTheme">
+                                        <span class="fa-stack fa-1x">
+                                            <i class="fa-solid fa-palette fa-stack-1x"></i>
+                                        </span>
+                                    </label>
+                                </input>
+                            </ul>
+                            <ul class="col d-flex flex-column align-items-center m-0">
+                                <input type="checkbox" class="btn-check" id="checkbox_initTheme" autocomplete="off" hidden>
+                                    <label class="btn btn-secondary" for="checkbox_initTheme">
+                                        <span class="fa-stack fa-1x">
+                                            <i class="fa-solid fa-palette fa-stack-1x"></i>
+                                        </span>
+                                    </label>
+                                </input>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
     
+    <!-- Custom Popup -->
+
+
+
+
+        <!-- Settings Box -->
+      
+
+        </div>
+        
+            <!-- Settings -->
+            <div class="settings d-flex flex-column m-2" id="settings_box">
+              <div>
+                  <div class="collapse collapse-vertical" id="collapseSettings">
+                    <div class="card card-body bg-dark text-white" id="settings_card">
+                      <div class="row row-cols-2">
+                          <ul class="col d-flex flex-column align-items-center m-0 mt-2">
+                              <input type="checkbox" class="btn-secondary" id="checkbox_ampm" autocomplete="off" hidden/>
+                              <label class="btn btn-secondary" for="checkbox_ampm" >
+                                  <span class="fa-stack fa-1x">
+                                      <i class="fa-solid fa-globe fa-stack-1x"></i>
+                                  </span>
+                              </label>
+                              <small>am/pm</small>
+                          </ul>
+                          <ul class="col d-flex flex-column align-items-center m-0 mt-2">
+                              <input type="checkbox" class="btn-check" id="checkbox_randomcolor" autocomplete="off" hidden>
+                                  <label class="btn btn-secondary" for="checkbox_randomcolor">
+                                      <span class="fa-stack fa-1x">
+                                          <i class="fa-solid fa-shuffle fa-stack-1x"></i>
+                                      </span>
+                                  </label>
+                              </input>
+                              <small class="text-nowrap">random color</small>
+                          </ul>
+                          <ul class="col d-flex flex-column align-items-center m-0 mt-4">
+                            <a href="//github.com/TimoEck" target="_blank" rel="noopener">
+                              <div class="btn btn-secondary">
+                                  <span class="fa-stack fa-1x">
+                                      <i class="fa-brands fa-github fa-stack-1x"></i>
+                                  </span>
+                              </div>
+                            </a>
+                            <small class="text-nowrap">github</small>
+                          </ul>
+                        <ul class="col d-flex flex-column align-items-center m-0 mt-4">
+                          <a href="#" target="_blank" rel="noopener"></a>
+                              <div class="btn btn-secondary">
+                                  <span class="fa-stack fa-1x">
+                                      <i class="fa-solid fa-globe fa-stack-1x"></i>
+                                  </span>
+                              </div>
+                          <small class="text-nowrap">website</small>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <button class="btn bg-dark text-light" id="settings_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
+                      <span>Customize</span>
+                  </button>
+            </div>
+            <!-- <div class="btn btn-secondary col-10 m-0 p-0">
+              <span class="fa-stack fa-1x">
+                <i class="fa-solid fa-brands fa-github fa-stack-1x"></i>
+              </span>
+            </div> -->
+      </div>
+    </div>
+  </div>
+      
+
+      
 
 
 
     <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
     <script src="./src/js/app.js"></script>
   </body>

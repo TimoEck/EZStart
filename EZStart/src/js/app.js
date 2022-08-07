@@ -5,10 +5,20 @@ const searchField = document.getElementById('searchField')
 const timeText = document.getElementById('time')
 const checkboxAmPm = document.getElementById('checkbox_ampm');
 const checkboxRandomcolor = document.getElementById('checkbox_randomcolor');
+const settingsBox = document.getElementById('settings_box');
+const settingsBtn = document.getElementById('settings_btn');
 
 
 
 
+
+
+// Select the text at startup
+async function selectText() {
+    
+    await searchField.focus();
+    await searchField.select();
+}
 
 
 // Change Background Color
@@ -29,26 +39,21 @@ function currentBackground() {
     if (checkboxRandomcolor.checked == false) {
         const currentColor = localStorage.getItem('color');
         document.body.style.background = currentColor
-
     }
 }
 
-
 function settings () {
-
-    const settingsBox = document.getElementById('settingsBox');
-    const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.getElementById('closeMenu');
-
 
     checkboxAmPm.addEventListener('change', function() {
         if (checkboxAmPm.checked) {
-            console.log("CHECKED")
+            //console.log("Timeformat: 12hrs")
             localStorage.setItem('timezone', "12hrs")
+     
             setBgGreet()
         } else {
-            console.log("UNCHECKED")
+            //console.log("Timeformat: 24hrs")
             localStorage.setItem('timezone', "24hrs")
+   
             setBgGreet()
         }
     })
@@ -57,37 +62,37 @@ function settings () {
     checkboxRandomcolor.addEventListener('change', function() {
         if (checkboxRandomcolor.checked) {
             localStorage.setItem('cbRandomcolor', true)
+            
         } else {
             localStorage.setItem('cbRandomcolor', false)
             // const currentColor = localStorage.getItem('color');
             // document.body.style.background = currentColor
-            console.log("Unchecked with saved Color")
+            //console.log("Your color is saved :)")
         }
     })
 
-    settingsBox.style.visibility = "hidden";
 
-    openBtn.addEventListener('click', function() {
-        openBtn.style.visibility = "hidden";
-        settingsBox.style.visibility = "visible";
-    })
-
-    closeBtn.addEventListener('click', function() {
-        openBtn.style.visibility = "visible";
-        settingsBox.style.visibility = "hidden";
-    })
 }
-function check_cbRandomcolor() {
-        
-    const value = localStorage.getItem('cbRandomcolor')
-    
-    if (value == 'true') {
-        checkboxRandomcolor.checked = value
-        randomBackground()
-    } else {
-        currentBackground()
+    function check_cbValues() {
+
+        const timezone_value = localStorage.getItem('timezone')
+
+        if (timezone_value == '12hrs') {
+
+        } else {
+
+        }
+
+
+        const randomcolor_value = localStorage.getItem('cbRandomcolor')
+
+        if (randomcolor_value == 'true') {
+            checkboxRandomcolor.checked = randomcolor_value
+            randomBackground()
+        } else {
+            currentBackground()
+        }
     }
-}
 
 // Set Greeting Text
 function setBgGreet() {
@@ -122,16 +127,16 @@ function setBgGreet() {
     timeText.textContent = time;
     if (hour <= 12 ) {
         // Greeting Text
-        greeting.textContent = "Good Morning, ";
+        greeting.textContent = "Good Morning,\n";
         am_pm.textContent = "AM";
     } else if (hour <= 18) {
         // Greeting Text
-        greeting.textContent = "Good Afternooon, ";
+        greeting.textContent = "Good Afternooon," + ' ';
         am_pm.textContent = "PM";
     } else {
         // Greeting Text
-        am_pm.textContent = "PM";
         greeting.textContent = "Good Evening, ";
+        am_pm.textContent = "PM";
     }
 }
 
@@ -161,20 +166,141 @@ function setName(e) {
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 
-function getSearch() {
+// function getSearchengine() {
+    
+// }
 
-    searchField.onclick = function () {
-        window.open('//google.com/search?q=' + document.getElementById('search').value);
+
+    const searchIcon = document.querySelector('#searchIcon')
+    const innerIcon = document.querySelector('#innerIcon')
+    const innerIconChild = document.querySelector('#innerIcon').firstChild
+    const changeSearch_btn = document.querySelector('#dropdown_button')
+    const googleIcon = document.querySelector('#Google_icon')
+    const googleBtn = document.querySelector('#google_btn')
+    const duckduckgoIcon = document.querySelector('#Duckduckgo_icon')
+    const duckduckgoBtn = document.querySelector('#duckduckgo_btn')
+    const bingIcon = document.querySelector('#Bing_icon')
+    const bingBtn = document.querySelector('#bing_btn')
+    const customBtn = document.querySelector('#customEngine')
+    const dropdownMenu = document.querySelector('.dropdown-menu')
+
+
+
+
+
+
+googleBtn.addEventListener('click', function(){          
+    const engine = localStorage['searchEngine']
+    if (engine != "google") {
+        localStorage.setItem('searchEngine', 'google')
+        const google_clone = googleIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(google_clone)
+        //console.log("Google selected")
+    } else {
+        //console.log('Already Google selected')
+    }
+    return
+})
+duckduckgoBtn.addEventListener('click', function(){  
+    const engine = localStorage['searchEngine']
+    if (engine != "duckduckgo") {
+        localStorage.setItem('searchEngine', 'duckduckgo')
+        const duckduckgo_clone = duckduckgoIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(duckduckgo_clone)
+        //console.log("Duckduckgo selected")
+    } else {
+        //console.log('Already Duckduckgo selected')
+    }
+    return
+})
+bingBtn.addEventListener('click', function(){  
+    const engine = localStorage['searchEngine']
+    if (engine != "bing") {
+        localStorage.setItem('searchEngine', 'bing')
+        const bing_clone = bingIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(bing_clone)
+        //console.log("Bing selected")
+    } else {
+        //console.log('Already Bing selected')
+    }
+    return
+})
+function getEngine() {
+    const engine = localStorage['searchEngine']
+    if (engine == "google") {
+        localStorage.setItem('searchEngine', 'google')
+        const google_clone = googleIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(google_clone)
+        //console.log("Google selected")
+    } else if (engine == "duckduckgo") {
+        localStorage.setItem('searchEngine', 'duckduckgo')
+        const duckduckgo_clone = duckduckgoIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(duckduckgo_clone)
+    } else if (engine == "bing") {
+        localStorage.setItem('searchEngine', 'bing')
+        const bing_clone = bingIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(bing_clone)
+        //console.log("Bing selected")
+    } else {
+        localStorage.setItem('searchEngine', 'google')
+        const google_clone = googleIcon.cloneNode(true)
+        innerIcon.firstElementChild.remove()
+        innerIcon.appendChild(google_clone)
     }
 }
+function getSearch() {
+    const engine = localStorage['searchEngine']
+    if (engine == "google") {
+        window.open('//google.com/search?q=' + searchField.value);
+    } else if (engine == "duckduckgo") {
+        window.open('//duckduckgo.com/?q=' + searchField.value);
+    } else if (engine == "bing") {
+        window.open('//bing.com/search?q=' + searchField.value);
+    } else {
+        alert("Select a searchengine")
+    }
+}
+ // Press Enter to search
+function clickPress(event) {
+    if (event.key == "Enter") {
+        getSearch()
+    }
+}
+
+function setDefault() {
+    localStorage.setItem('cbRandomcolor', true)
+    localStorage.setItem('timezone', "24hrs")
+}
+
+function checkVisit() {
+    if (!localStorage.getItem('visited', true)) {
+        localStorage.setItem('visited', true);
+        setDefault()
+    } else {
+        return
+    }
+};
+
 
 
 
 function startUp() {
-    check_cbRandomcolor()
-    settings()
+    checkVisit();
+    check_cbValues();
+    getEngine();
+    settings();
     setBgGreet()
     getName();
+    selectText();
+
 }
 
-startUp()
+document.addEventListener("load", startUp())
+
+

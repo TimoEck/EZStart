@@ -1,5 +1,11 @@
+
 #searchField {
     border: none;
+}
+
+#searchField:focus {
+    border: none;
+    outline: none;
 }
 
 .settings {
@@ -8,12 +14,26 @@
     right: 0;
 }
 
+.btn {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 .settings .btn:focus {
     outline: none;
     box-shadow: none;
-
   }
+
+.settings .btn {
+    outline: none;
+    box-shadow: none;
+  }
+
 
 
   [data-tooltip] {
@@ -72,4 +92,42 @@
   [data-tooltip=""]::after, [data-tooltip=""]::before {
     display: none !important;
   }
-    
+
+.ezstartColor{
+  background-color: #f74545;
+}
+
+
+input[type="checkbox"]+label {
+  opacity: .5;
+}
+
+input[type="checkbox"]:checked+label {
+  opacity: 1;
+}
+
+#searchIcon {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+#settings_box {
+  border-bottom-left-radius: 0 !important;
+}
+
+#settings_card {
+
+  margin-bottom: 10px;
+}
+
+
+.popup {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+
+}
